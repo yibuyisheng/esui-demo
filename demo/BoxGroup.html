@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>esui demo - Button</title>
+    <link rel="stylesheet" href="../dep/esui/3.1.0/output/asset/css/main.css"/>
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js"></script>
+    <script>
+    require.config({
+        'baseUrl': '../src',
+        'paths': {},
+        'packages': [
+            {
+                'name': 'eicons',
+                'location': '../dep/eicons/1.0.0-beta.1/src',
+                'main': 'main.less'
+            },
+            {
+                'name': 'eoo',
+                'location': '../dep/eoo/0.1.3/src',
+                'main': 'main'
+            },
+            {
+                'name': 'esf',
+                'location': '../dep/esf/1.0.0-beta.1/src'
+            },
+            {
+                'name': 'est',
+                'location': '../dep/est/1.3.0/src'
+            },
+            {
+                'name': 'esui',
+                'location': '../dep/esui/3.1.0/src',
+                'main': 'main'
+            },
+            {
+                'name': 'etpl',
+                'location': '../dep/etpl/3.0.1/src',
+                'main': 'main'
+            },
+            {
+                'name': 'mini-event',
+                'location': '../dep/mini-event/1.0.2/src',
+                'main': 'main'
+            },
+            {
+                'name': 'moment',
+                'location': '../dep/moment/2.7.0/src',
+                'main': 'moment'
+            },
+            {
+                'name': 'underscore',
+                'location': '../dep/underscore/1.5.2/src',
+                'main': 'underscore'
+            }
+        ]
+    });
+    </script>
+</head>
+<body>
+<p><a href="../index.html">首页</a></p>
+<hr />
+<h4>创建方式一：主元素和 radio 子元素都不带有 name 属性，默认会分成一个组</h4>
+<div data-ui-type="BoxGroup">
+    <input type="radio" />
+    <input type="radio" />
+</div>
+<h4>创建方式二：主元素和 radio 子元素带有相同的 name 属性，带有不同 name 属性的 radio 将不会归为一组，并会被删掉</h4>
+<div data-ui-type="BoxGroup" data-ui-name="boxgroup">
+    <input type="radio" name="boxgroup" />
+    <input type="radio" name="boxgroup" />
+    <!-- 下面这个 radio 的 name 与主元素不一致，在渲染的时候这个元素会直接被删掉 -->
+    <input type="radio" name="boxgroup1" />
+</div>
+<h4>创建方式三：给每个 radio 加上相应的文本</h4>
+<div data-ui-type="BoxGroup" data-ui-name="boxgroup">
+    <input type="radio" name="boxgroup" title="第一个radio" />
+    <label for="radio-id">通过 id 与一个 label 标签关联起来，label 的文本内容就是 radio 的文本内容</label>
+    <input type="radio" name="boxgroup" id="radio-id" />
+    <input type="radio" name="boxgroup" value="通过value设置文本，不知道为什么不行" />
+</div>
+<h4>垂直方向</h4>
+<div data-ui-type="BoxGroup" data-ui-orientation="vertical">
+    <input type="radio" />
+    <input type="radio" />
+    <input type="radio" />
+</div>
+<h4>checkbox 复选框</h4>
+<div data-ui-type="BoxGroup" data-ui-box-type="checkbox">
+    <input type="checkbox" />
+    <input type="checkbox" />
+    <input type="checkbox" title="第三个" />
+    <input type="checkbox" />
+</div>
+<h4>单选初始化指定选项</h4>
+<div data-ui-type="BoxGroup" data-ui-value="2">
+    <input type="radio" value="1" title="1" />
+    <input type="radio" value="2" title="2" />
+    <input type="radio" value="3" title="3" />
+    <input type="radio" value="4" title="4" />
+</div>
+<h4>复选初始化指定选项</h4>
+<div data-ui-type="BoxGroup" data-ui-box-type="checkbox" data-ui-value="1,2">
+    <input type="checkbox" value="1" title="1" />
+    <input type="checkbox" value="2" title="2" />
+    <input type="checkbox" value="3" title="3" />
+    <input type="checkbox" value="4" title="4" />
+</div>
+<h4>通过 datasource 动态设置内部控件，初始化是单选框，3秒后将会变成复选框</h4>
+<div data-ui-type="BoxGroup"></div>
+<h4>监听选择变化</h4>
+<div data-ui-type="BoxGroup">
+    <input type="radio" value="1" title="1" />
+    <input type="radio" value="2" title="2" />
+    <input type="radio" value="3" title="3" />
+</div>
+<script>
+require(['esui', 'esui/BoxGroup'], function (ui) {
+    var controls = ui.init();
+
+    controls[7].setProperties({
+        boxType: 'radio',
+        datasource: [
+            {
+                title: '一',
+                value: 1
+            },
+            {
+                title: '二',
+                value: 2
+            }
+        ]
+    });
+    setTimeout(function() {
+        controls[7].setProperties({boxType: 'checkbox'});
+    }, 3000);
+
+    controls[8].on('change', function (event) {
+        alert(event.target.getValue());
+    });
+});
+</script>
+</body>
+</html>
