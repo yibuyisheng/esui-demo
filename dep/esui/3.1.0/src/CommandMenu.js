@@ -27,7 +27,7 @@ define(
             ) {
                 target = target.parentNode;
             }
-            
+
             var index = +target.getAttribute('data-index');
             var item = this.datasource[index];
 
@@ -94,7 +94,7 @@ define(
                     classes.push.apply(
                         classes,
                         this.control.helper.getPartClasses('node-disabled')
-                    );                    
+                    );
                 }
 
                 html += '<li data-index="' + i + '"'
