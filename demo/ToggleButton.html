@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>esui demo - TreeRichSelector</title>
+    <title>esui demo - ToggleButton</title>
     <link rel="stylesheet" href="../src/main.css"/>
     <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js"></script>
     <script>
@@ -84,56 +84,15 @@
 <body>
 <p><a href="../index.html">首页</a></p>
 <hr />
-<div data-ui-type="TreeRichSelector" data-ui-id="tree"></div>
+<div data-ui-type="ToggleButton" data-ui-id="toggleButton"></div>
 <script>
 require([
     'esui',
-    'esui/TreeStrategy',
-    'bat-ria/extension/underscore',
-    'bat-ria/ui/TreeRichSelector'
+    'bat-ria/ui/ToggleButton'
 ], function (
-    ui,
-    TreeStrategy,
-    underscore
+    ui
 ) {
-    underscore.activate();
-    ui.init(null, {
-        properties: {
-            tree: {
-                strategy: new TreeStrategy(),
-                datasource: {
-                    id: '1',
-                    text: '百度',
-                    children:[
-                        {
-                            id: '2',
-                            text: '联盟研发部',
-                            children: [
-                                { id: '21', text: 'RD' },
-                                { id: '22', text: 'FE' },
-                                { id: '23', text: 'QA' },
-                                { id: '24', text: 'PM' }
-                            ]
-                        },
-                        {
-                            id: '3',
-                            text: '贴吧事业部',
-                            children: [
-                                { id: '31', text: 'RD' },
-                                { id: '32', text: 'FE' },
-                                { id: '33', text: 'QA' },
-                                { id: '34', text: 'PM' }
-                            ]
-                        },
-                        {
-                            id: '4',
-                            text: '一半吃肉一般吃素部'
-                        }
-                    ]
-                }
-            }
-        }
-    });
+    ui.init();
 });
 </script>
 </body>
