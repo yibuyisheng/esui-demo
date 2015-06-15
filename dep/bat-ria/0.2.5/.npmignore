@@ -1,0 +1,7 @@
+dep
+node_modules
+npm-debug.log
+.npmignore
+.DS_Store
+test/coverage
+doc/api
