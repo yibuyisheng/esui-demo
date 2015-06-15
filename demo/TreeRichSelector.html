@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>esui demo - Button</title>
-    <link rel="stylesheet" href="../dep/esui/3.1.0/output/asset/css/main.css"/>
+    <link rel="stylesheet" href="../src/main.css"/>
     <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js"></script>
     <script>
     require.config({
@@ -84,10 +84,56 @@
 <body>
 <p><a href="../index.html">首页</a></p>
 <hr />
-<div data-ui-type="TreeRichSelector"></div>
+<div data-ui-type="TreeRichSelector" data-ui-id="tree"></div>
 <script>
-require(['esui', 'bat-ria/ui/TreeRichSelector'], function (ui) {
-    var buttons = ui.init();
+require([
+    'esui',
+    'esui/TreeStrategy',
+    'bat-ria/extension/underscore',
+    'bat-ria/ui/TreeRichSelector'
+], function (
+    ui,
+    TreeStrategy,
+    underscore
+) {
+    underscore.activate();
+    ui.init(null, {
+        properties: {
+            tree: {
+                strategy: new TreeStrategy(),
+                datasource: {
+                    id: '1',
+                    text: '百度',
+                    children:[
+                        {
+                            id: '2',
+                            text: '联盟研发部',
+                            children: [
+                                { id: '21', text: 'RD' },
+                                { id: '22', text: 'FE' },
+                                { id: '23', text: 'QA' },
+                                { id: '24', text: 'PM' }
+                            ]
+                        },
+                        {
+                            id: '3',
+                            text: '贴吧事业部',
+                            children: [
+                                { id: '31', text: 'RD' },
+                                { id: '32', text: 'FE' },
+                                { id: '33', text: 'QA' },
+                                { id: '34', text: 'PM' }
+                            ]
+                        },
+                        {
+                            id: '4',
+                            text: '一半吃肉一般吃素部'
+                        }
+                    ]
+                }
+            }
+        }
+    });
 });
 </script>
 </body>
