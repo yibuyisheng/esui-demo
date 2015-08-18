@@ -1,19 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>esui demo - Button</title>
-    <!-- <link rel="stylesheet" href="../src/main.css"/> -->
-    <link rel="stylesheet" href="../src/main.less"/>
-    <style type="text/css">
-    ul {
-        width: 100px;
-    }
-    li {
-        position: relative;
-        margin: 10px 0;
-        list-style: none;
-    }
-    </style>
+    <title>esui demo - BoxGroup</title>
+    <link rel="stylesheet" href="../src/main.css"/>
     <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js"></script>
     <script>
     require.config({
@@ -23,7 +12,7 @@
             {
                 'name': 'eicons',
                 'location': '../dep/eicons/1.0.0-beta.1/src',
-                'main': 'main.less'
+                'main': 'main'
             },
             {
                 'name': 'eoo',
@@ -103,45 +92,10 @@
     </script>
 </head>
 <body>
-<p><a href="../index.html">首页</a></p>
-<hr />
-<ul>
-    <li><button data-ui-type="Button" data-ui-skin="spring">按钮</button></li>
-    <li><button data-ui-type="Button" data-ui-skin="spring-add">添加</button></li>
-    <li><button data-ui-type="Button" data-ui-skin="download">下载</button></li>
-    <li style="height:40px;"><button data-ui-type="Button" data-ui-skin="layerClose"></button></li>
-    <li><a data-ui-type="Button" data-ui-skin="link">link skin</a></li>
-    <li><a data-ui-type="Button" data-ui-content="通过data-ui-content设置的按钮文本" data-ui-width="230">按钮</a></li>
-    <li><button data-ui-type="Button" data-ui-disabled="disabled">被禁用的按钮</button></li>
-    <li><button data-ui-type="Button" data-ui-width="230">绑定了点击事件，所以请点击我</button></li>
-    <li><button data-ui-type="Button" data-ui-width="230">使用once绑定事件，只能被点击一次</button></li>
-    <li><button data-ui-type="Button" data-ui-width="230"></button></li>
-</ul>
+<div data-ui-type="TextBox" data-ui-auto-select="true"></div>
 <script>
-require(['esui', 'esui/Button'], function (ui) {
-    var buttons = ui.init();
-    buttons[7].on('click', function () {
-        alert('被点击了');
-    });
-    buttons[8].once('click', function () {
-        alert('只能点击这一次，下次点击不会再弹出这个警告框');
-    });
-
-    var counter = 5;
-    var timer = setInterval(function () {
-        if (counter > 0) {
-            buttons[9].setContent(counter + '秒钟后将会用un()取消该按钮的事件回调');
-            counter--;
-        } else {
-            clearInterval(timer);
-            buttons[9].un('click', button9Handler);
-            buttons[9].setContent('5秒计时结束，点击按钮不会有反应');
-        }
-    }, 1000);
-    buttons[9].on('click', button9Handler);
-    function button9Handler() {
-        alert('计时的按钮');
-    }
+require(['esui', 'esui/TextBox'], function (ui) {
+    var controls = ui.init();
 });
 </script>
 </body>
