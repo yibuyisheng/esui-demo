@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>esui demo - Button</title>
+    <title>esui demo - Tab</title>
     <link rel="stylesheet" href="../src/main.css"/>
-    <style type="text/css">
-    ul {
-        width: 100px;
-    }
-    li {
-        position: relative;
-        margin: 10px 0;
-        list-style: none;
-    }
-    </style>
     <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js"></script>
     <script>
     require.config({
@@ -104,43 +94,40 @@
 <body>
 <p><a href="../index.html">首页</a></p>
 <hr />
-<ul>
-    <li><button data-ui-type="Button" data-ui-skin="spring">按钮</button></li>
-    <li><button data-ui-type="Button" data-ui-skin="spring-add">添加</button></li>
-    <li><button data-ui-type="Button" data-ui-skin="download">下载</button></li>
-    <li style="height:40px;"><button data-ui-type="Button" data-ui-skin="layerClose"></button></li>
-    <li><a data-ui-type="Button" data-ui-skin="link">link skin</a></li>
-    <li><a data-ui-type="Button" data-ui-content="通过data-ui-content设置的按钮文本" data-ui-width="230">按钮</a></li>
-    <li><button data-ui-type="Button" data-ui-disabled="disabled">被禁用的按钮</button></li>
-    <li><button data-ui-type="Button" data-ui-width="230">绑定了点击事件，所以请点击我</button></li>
-    <li><button data-ui-type="Button" data-ui-width="230">使用once绑定事件，只能被点击一次</button></li>
-    <li><button data-ui-type="Button" data-ui-width="230"></button></li>
-</ul>
-<script>
-require(['esui', 'esui/Button'], function (ui) {
-    var buttons = ui.init();
-    buttons[7].on('click', function () {
-        alert('被点击了');
-    });
-    buttons[8].once('click', function () {
-        alert('只能点击这一次，下次点击不会再弹出这个警告框');
-    });
 
-    var counter = 5;
-    var timer = setInterval(function () {
-        if (counter > 0) {
-            buttons[9].setContent(counter + '秒钟后将会用un()取消该按钮的事件回调');
-            counter--;
-        } else {
-            clearInterval(timer);
-            buttons[9].un('click', button9Handler);
-            buttons[9].setContent('5秒计时结束，点击按钮不会有反应');
-        }
-    }, 1000);
-    buttons[9].on('click', button9Handler);
-    function button9Handler() {
-        alert('计时的按钮');
-    }
+<div data-ui-type="Tab" data-ui-id="test" data-ui-height="500" data-ui-variants="align-right">
+    <ul data-role="navigator">
+        <li data-for="a">TAB1</li>
+        <li data-for="b">TAB2</li>
+        <li data-for="c">TAB3</li>
+    </ul>
+</div>
+<div class="ui-tab-content ui-tab-content-top-border">
+    <div class="ui-tab-panel" title="tab1" id="a">我是Tab1</div>
+    <div class="ui-tab-panel" title="tab2" id="b">我是Tab2</div>
+    <div class="ui-tab-panel" title="tab3" id="c">我是Tab3</div>
+</div>
+<p>
+    对于 3.1.0 版本的 ESUI ， Tab 的结构要写成这样：
+</p>
+<pre>
+&lt;div data-ui-type="Tab" data-ui-id="test" data-ui-height="500" data-ui-variants="align-right">
+    &lt;ul data-role="navigator">
+        &lt;li data-for="a">TAB1&lt;/li>
+        &lt;li data-for="b">TAB2&lt;/li>
+        &lt;li data-for="c">TAB3&lt;/li>
+    &lt;/ul>
+    &lt;div class="ui-tab-content ui-tab-content-top-border">
+        &lt;div class="ui-tab-panel" title="tab1" id="a">我是Tab1&lt;/div>
+        &lt;div class="ui-tab-panel" title="tab2" id="b">我是Tab2&lt;/div>
+        &lt;div class="ui-tab-panel" title="tab3" id="c">我是Tab3&lt;/div>
+    &lt;/div>
+&lt;/div>
+</pre>
+
+<script>
+require(['esui', 'esui/Tab'], function (ui) {
+    var controls = ui.init();
 });
 </script>
 </body>
